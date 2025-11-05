@@ -325,3 +325,28 @@ gcloud auth application-default login
 - No subir documentos con información clasificada sin revisión
 - Revisar políticas de Google Cloud para cumplimiento
 - Considerar despliegue on-premise para datos sensibles
+
+---
+
+## 🕸️ API (FastAPI)
+
+This repository now exposes a FastAPI backend instead of the Streamlit UI by default.
+
+Run the API server from the project root:
+
+```bash
+# (optional) activate your virtualenv
+pip install -r requirements.txt
+uvicorn app:app --reload --port 8000
+```
+
+Endpoint:
+
+- POST /api/v1/validate
+    - multipart/form-data
+    - fields: `file` (application/pdf), `start_page` (int), `end_page` (int)
+    - response: JSON {"results": [{"page": n, "findings": [{categoria, descripcion, score}, ...]}, ...]}
+
+Enable real Gemini (google-genai) calls by installing `google-genai` and setting env vars as described earlier, then set `USE_REAL_GEMINI=1`.
+
+If you prefer the Streamlit UI, the original `app.py` was replaced; you can revert or run an older branch.

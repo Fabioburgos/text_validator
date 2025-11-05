@@ -66,3 +66,8 @@ uritemplate==4.2.0
 urllib3==2.5.0
 watchdog==6.0.0
 websockets==15.0.1
+
+# FastAPI backend dependencies (added for API support)
+fastapi
+uvicorn[standard]
+python-multipart
